@@ -12,8 +12,8 @@
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
     </properties>
-	
-	
+
+
     <build>
         <plugins>
             <plugin>
@@ -21,9 +21,11 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.3</version>
             </plugin>
-            <plugin>
-                <artifactId>maven-assembly-plugin</artifactId>
 
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <version>3.3.0</version>
                 <configuration>
                     <descriptorRefs>
                         <descriptorRef>jar-with-dependencies</descriptorRef>
@@ -37,6 +39,15 @@
                         </manifest>
                     </archive>
                 </configuration>
+                <executions>
+                    <execution>
+                        <id>make-assembly</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>
