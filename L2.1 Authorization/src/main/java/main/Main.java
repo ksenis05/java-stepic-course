@@ -15,6 +15,7 @@ import servlets.UsersServlet;
 
 public class Main {
     public static void main(String[] args) throws Exception {
+
         AccountService accountService = new AccountService();
 
         accountService.addNewUser(new UserProfile("admin"));
