@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>WebSocket Test</title>
+</head>
+<body>
+<h2>WebSocket Test</h2>
+<label>WebSocket URL:
+    <input type="text" id="wsUrl" value="ws://localhost:8080/chat" size="40">
+</label>
+<br><br>
+<button onclick="connect()">Connect</button>
+<button onclick="disconnect()">Disconnect</button>
+<br><br>
+<input type="text" id="message" placeholder="Message" size="40">
+<button onclick="sendMessage()">Send</button>
+<pre id="log"></pre>
+
+<script>
+    let socket;
+
+    function log(msg) {
+        document.getElementById("log").textContent += msg + "\n";
+    }
+
+    function connect() {
+        const url = document.getElementById("wsUrl").value;
+        socket = new WebSocket(url);
+
+        socket.onopen = () => log("CONNECTED");
+        socket.onmessage = event => log("RECEIVED: " + event.data);
+        socket.onclose = () => log("DISCONNECTED");
+        socket.onerror = error => log("ERROR: " + error);
+    }
+
+    function disconnect() {
+        if (socket) socket.close();
+    }
+
+    function sendMessage() {
+        const msg = document.getElementById("message").value;
+        if (socket && socket.readyState === WebSocket.OPEN) {
+            socket.send(msg);
+            log("SENT: " + msg);
+        } else {
+            log("WebSocket not connected.");
+        }
+    }
+</script>
+</body>
+</html>
