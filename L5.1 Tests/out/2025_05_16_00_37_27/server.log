@@ -1,0 +1,3 @@
+[05-16 00:37:27,399, 581] main.Main Starting at http://127.0.0.1:8080
+[05-16 00:37:27,592, 774] main.Main Server started
+[05-16 00:39:32,583, 125765] servlets.AdminServlet /admin usersLimit : 11
